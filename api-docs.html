@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Rental Portal API Documentation</title><style>body{font-family:system-ui;margin:40px;background:#f6f8fc;color:#172033}.box{max-width:900px;margin:auto;background:#fff;padding:28px;border-radius:18px;border:1px solid #e5e8ef}code{background:#f0f2f8;padding:3px 6px;border-radius:5px}.endpoint{padding:12px 0;border-bottom:1px solid #e6eaf1}.get{color:#138a61}.post{color:#3657d9}.put,.patch{color:#b06d00}.delete{color:#c84258}</style></head><body><div class="box"><h1>Rental Property Management Portal — API</h1><p>OpenAPI JSON: <a href="/api-docs.json">/api-docs.json</a></p>
+<div class="endpoint"><b class="post">POST</b> <code>/api/auth/register</code> — register tenant/owner</div>
+<div class="endpoint"><b class="post">POST</b> <code>/api/auth/login</code> — login and receive JWT</div>
+<div class="endpoint"><b class="get">GET</b> <code>/api/auth/me</code> — current authenticated user</div>
+<div class="endpoint"><b class="get">GET</b> <code>/api/properties</code> — search/filter properties</div>
+<div class="endpoint"><b class="post">POST</b> <code>/api/properties</code> — owner/admin creates property</div>
+<div class="endpoint"><b class="put">PUT</b> <code>/api/properties/:id</code> — update property</div>
+<div class="endpoint"><b class="delete">DELETE</b> <code>/api/properties/:id</code> — delete property</div>
+<div class="endpoint"><b class="post">POST</b> <code>/api/properties/:id/images</code> — upload images</div>
+<div class="endpoint"><b class="post">POST</b> <code>/api/rental-requests</code> — tenant submits request</div>
+<div class="endpoint"><b class="get">GET</b> <code>/api/rental-requests/mine</code> — tenant requests</div>
+<div class="endpoint"><b class="get">GET</b> <code>/api/rental-requests/owner</code> — owner/admin requests</div>
+<div class="endpoint"><b class="patch">PATCH</b> <code>/api/rental-requests/:id/status</code> — approve/reject</div>
+<div class="endpoint"><b class="get">GET</b> <code>/api/profile</code> — profile</div>
+<div class="endpoint"><b class="put">PUT</b> <code>/api/profile</code> — update profile</div>
+<div class="endpoint"><b class="get">GET</b> <code>/api/admin/stats</code> — admin stats</div>
+<div class="endpoint"><b class="get">GET</b> <code>/api/admin/users</code> — list users</div>
+<div class="endpoint"><b class="get">GET</b> <code>/api/admin/properties</code> — list properties</div>
+<div class="endpoint"><b class="patch">PATCH</b> <code>/api/admin/properties/:id/status</code> — approve/reject listing</div>
+</div></body></html>
