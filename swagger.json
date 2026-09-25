@@ -1,0 +1,37 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Rental Property Management Portal API",
+    "version": "1.0.0",
+    "description": "REST API for tenant, property owner and admin workflows."
+  },
+  "servers": [{"url": "http://localhost:3000"}],
+  "tags": [
+    {"name":"Authentication"},
+    {"name":"Properties"},
+    {"name":"Rental Requests"},
+    {"name":"Profile"},
+    {"name":"Admin"}
+  ],
+  "paths": {
+    "/api/health": {"get":{"tags":["Authentication"],"summary":"Health check","responses":{"200":{"description":"OK"}}}},
+    "/api/auth/register": {"post":{"tags":["Authentication"],"summary":"Register tenant or owner","responses":{"201":{"description":"Created"}}}},
+    "/api/auth/login": {"post":{"tags":["Authentication"],"summary":"Login","responses":{"200":{"description":"Logged in"}}}},
+    "/api/auth/me": {"get":{"tags":["Authentication"],"summary":"Current user","responses":{"200":{"description":"User"}}}},
+    "/api/properties": {"get":{"tags":["Properties"],"summary":"Search/filter approved properties","responses":{"200":{"description":"Property list"}}},"post":{"tags":["Properties"],"summary":"Create property","security":[{"bearerAuth":[]}],"responses":{"201":{"description":"Created"}}}},
+    "/api/properties/{id}": {"get":{"tags":["Properties"],"summary":"Property details","parameters":[{"in":"path","name":"id","required":true,"schema":{"type":"integer"}}],"responses":{"200":{"description":"Property"}}},"put":{"tags":["Properties"],"summary":"Update property","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Updated"}}},"delete":{"tags":["Properties"],"summary":"Delete property","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Deleted"}}}},
+    "/api/properties/{id}/images": {"post":{"tags":["Properties"],"summary":"Upload property images","security":[{"bearerAuth":[]}],"requestBody":{"required":true,"content":{"multipart/form-data":{"schema":{"type":"object","properties":{"images":{"type":"array","items":{"type":"string","format":"binary"}}}}}}},"responses":{"200":{"description":"Uploaded"}}}},
+    "/api/rental-requests": {"post":{"tags":["Rental Requests"],"summary":"Submit rental request","security":[{"bearerAuth":[]}],"responses":{"201":{"description":"Created"}}}},
+    "/api/rental-requests/mine": {"get":{"tags":["Rental Requests"],"summary":"Tenant's requests","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Requests"}}}},
+    "/api/rental-requests/owner": {"get":{"tags":["Rental Requests"],"summary":"Owner/admin requests","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Requests"}}}},
+    "/api/rental-requests/{id}/status": {"patch":{"tags":["Rental Requests"],"summary":"Approve/reject request","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Updated"}}}},
+    "/api/profile": {"get":{"tags":["Profile"],"summary":"Get profile","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Profile"}}},"put":{"tags":["Profile"],"summary":"Update profile","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Updated"}}}},
+    "/api/admin/stats": {"get":{"tags":["Admin"],"summary":"Platform statistics","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Stats"}}}},
+    "/api/admin/users": {"get":{"tags":["Admin"],"summary":"List users","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Users"}}}},
+    "/api/admin/properties": {"get":{"tags":["Admin"],"summary":"List all properties","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Properties"}}}},
+    "/api/admin/properties/{id}/status": {"patch":{"tags":["Admin"],"summary":"Approve/reject property","security":[{"bearerAuth":[]}],"responses":{"200":{"description":"Updated"}}}}
+  },
+  "components": {
+    "securitySchemes": {"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}}
+  }
+}
